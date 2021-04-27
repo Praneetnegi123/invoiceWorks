@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <title>Invoice</title>
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .bg-set {
+        background-image: url();
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <div class="bg-set">
+    <div class="content" style="padding: 0px 10px">
+      <div class="title-head">
+        <h1
+          style="
+            margin: 0px;
+            padding-top: 21px;
+            text-transform: uppercase;
+            color: #085394;
+            font-size: 70px;
+          "
+        >
+          invoice
+        </h1>
+        <div
+          class="tittle"
+          style="display: flex; justify-content: space-between"
+        >
+          <p style="font-size: 22px">
+            From:<%=data.from.companyName%> <br /><%=data.from.address%>
+            <br /><%=data.from.state%>
+          </p>
+          <p style="font-size: 20px; text-transform: uppercase">
+            invoice # kmit-1234
+          </p>
+        </div>
+      </div>
+      <!--------bill----->
+      <div
+        class="section"
+        style="display: flex; padding-top: 2em; justify-content: space-between"
+      >
+        <div class="head">
+          <h4
+            style="
+              text-transform: uppercase;
+              color: #085394;
+              font-size: 16px;
+              margin: 0;
+              font-weight: 400;
+            "
+          >
+            To:<%=data.to.companyName%> <br /><%=data.to.address%>
+            <br /><%=data.to.state%>
+          </h4>
+        </div>
+        <div class="head">
+          <h4
+            style="
+              text-transform: uppercase;
+              color: #085394;
+              font-size: 16px;
+              margin: 0;
+              font-weight: 400;
+            "
+          ></h4>
+        </div>
+        <div class="head" style="line-height: 33px">
+          <h4
+            style="
+              text-transform: uppercase;
+              color: #085394;
+              font-size: 16px;
+              font-weight: 400;
+              margin: 0;
+            "
+          >
+            Invoice #
+          </h4>
+          <h4
+            style="
+              text-transform: uppercase;
+              color: #085394;
+              font-size: 16px;
+              margin: 0;
+              font-weight: 400;
+            "
+          >
+            invoice date
+          </h4>
+          <h4
+            style="
+              text-transform: uppercase;
+              color: #085394;
+              font-size: 16px;
+              font-weight: 400;
+              margin: 0;
+            "
+          >
+            status
+          </h4>
+          <h4
+            style="
+              text-transform: uppercase;
+              color: #085394;
+              font-size: 16px;
+              font-weight: 400;
+              margin: 0;
+            "
+          >
+            Due date
+          </h4>
+        </div>
+        <div class="head"
+          <h4 style="text-transform: uppercase; font-weight: 400; margin: 0">
+            <%=data._id%>
+          </h4>
+          <p style="text-transform: uppercase; font-weight: 400">
+            <%=data.createdAt%>
+          </p>
+          <p style="text-transform: uppercase; font-weight: 400">
+            <%=data.status%>
+          </p>
+          <p style="text-transform: uppercase; font-weight: 400">
+            <%=data.dueDate%>
+          </p>
+        </div>
+      </div>
+      <!-------table----->
+      <table
+        style="
+          padding-top: 40px;
+          table-layout: fixed;
+          width: 100%;
+          border-spacing: 0;
+        "
+      >
+        <thead>
+          <tr>
+            <th
+              style="
+                text-transform: uppercase;
+                color: #085394;
+                padding: 10px 20px;
+                font-size: 21px;
+                font-size: 21px;
+                text-align: start;
+                border-top: 2px solid #83d0bf;
+                border-bottom: 2px solid #83d0bf;
+              "
+            >
+              qty
+            </th>
+
+            <th
+              style="
+                text-transform: uppercase;
+                color: #085394;
+                padding: 10px 20px;
+                font-size: 21px;
+                text-align: start;
+                border-top: 2px solid #83d0bf;
+                border-bottom: 2px solid #83d0bf;
+              "
+            >
+              product
+            </th>
+
+            <th
+              style="
+                text-transform: uppercase;
+                color: #085394;
+                padding: 10px 20px;
+                font-size: 21px;
+                text-align: start;
+                border-top: 2px solid #83d0bf;
+                border-bottom: 2px solid #83d0bf;
+              "
+            >
+              description
+            </th>
+            <th
+              style="
+                text-transform: uppercase;
+                color: #085394;
+                padding: 10px 20px;
+                font-size: 21px;
+                text-align: left;
+                border-top: 2px solid #83d0bf;
+                border-bottom: 2px solid #83d0bf;
+              "
+            >
+              unit price
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i<data.items.length; i++) {%>
+          <tr>
+            <td style="text-align: start; padding: 11px 31px">
+              <%=data.items[i].quantity%>
+            </td>
+            <td style="text-align: start; padding: 17px 21px">
+              <%=data.items[i].productName%>
+            </td>
+            <td style="text-align: start; padding: 17px 21px">
+              <%=data.items[i].description%>
+            </td>
+            <td style="text-align: left; padding-left: 57px">
+              <%=data.items[i].unitPrice%>
+            </td>
+          </tr>
+          <% } %>
+
+          <tr>
+            <td style="border-top: 2px solid #83d0bf"></td>
+            <td style="border-top: 2px solid #83d0bf"></td>
+            <td
+              style="
+                text-transform: uppercase;
+                border-top: 2px solid #83d0bf;
+                color: #085394;
+                font-size: 17px;
+                text-align: start;
+                padding: 10px 20px;
+                font-weight: 700;
+              "
+            >
+              Total
+            </td>
+            <td
+              style="
+                text-transform: uppercase;
+                border-top: 2px solid #83d0bf;
+                color: #085394;
+
+                font-size: 17px;
+                padding: 10px 47px;
+                font-weight: 700;
+              "
+            >
+              <i
+                class="fa fa-inr"
+                aria-hidden="true"
+                style="font-size: 14px"
+              ></i>
+              <%=data.items[0].total%>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!---bottm---->
+      <div class="head">
+        <h4
+          style="color: #085394; font-size: 20px; margin: 0; font-weight: 400"
+        >
+          Terms & Conditions
+        </h4>
+      </div>
+    </div>
+  </div>
+
+  <body></body>
+</html>
